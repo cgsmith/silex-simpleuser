@@ -290,7 +290,8 @@ class UserServiceProvider implements ServiceProviderInterface, ControllerProvide
                 if (!$app['security']->isGranted('EDIT_USER_ID', $request->get('id'))) {
                     throw new AccessDeniedException();
                 }
-            });
+            })
+            ->assert('id', '\d+');
 
         $controllers->get('/list', 'user.controller:listAction')
             ->bind('user.list');
